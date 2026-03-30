@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>WEB RAT Crack</title>
+  <meta name="description" content="Try WEB RAT Crack - the best remote access tool to control your victims">
+  <meta name="keywords" content="WEB RAT, crack, remote access tool, RAT, hacking tool, control victims">
+  <meta name="author" content="WEB RAT Team">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    @font-face {
+      font-family: 'RubikGlitch';
+      src: url('./RubikGlitch-Regular.ttf') format('truetype');
+    }
+
+    #mainname {
+      font-family: 'RubikGlitch', sans-serif;
+    }
+
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+    }
+
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #666;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="mainbox">
+    <h1 id="mainname" class="p1">4 0 4 - Not found</h1>
+	<center><div id="forgpass" class="butonformain" onclick="window.location.href='/';">Back to main</div></center>
+      </div>
+      <div class="notify" style="display:none;">
+        <b>Error</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("background");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    class Square {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -10 - Math.random() * 150;
+        this.size = 3 + Math.random() * 55;
+        this.speed = 1 + Math.random() * 3;
+        const shades = [179, 111, 194, 103, 83];
+        const gray = shades[Math.floor(Math.random() * shades.length)];
+        this.color = `rgb(${gray}, ${gray}, ${gray})`;
+      }
+      update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    const squares = Array.from({ length: 120 }, () => new Square());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      squares.forEach(sq => { sq.update(); sq.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    function showLoading() {
+      document.getElementById('loading').style.display = 'block';
+      setTimeout(() => {
+        window.location.href = 'panel.html';
+      }, 2000);
+    }
+
+    function hideregisterpanel() {
+      document.getElementById('registerbox').style.display = 'none';
+    }
+
+    function register() {
+      showLoading();
+    }
+  </script>
+</body>
+</html>

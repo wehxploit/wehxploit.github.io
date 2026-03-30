@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" theme="dark">
+
+<!-- Mirrored from webrat.site/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:46:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <title>GUNSAWIAN RAT BETA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.html">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @font-face {
+      font-family: 'RubikGlitch';
+      src: url('RubikGlitch-Regular.ttf') format('truetype');
+    }
+    #mainname { font-family: 'RubikGlitch', sans-serif; }
+
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      display: none;
+    }
+  </style>
+  <script src="auth.js" defer></script>
+  <script src="captchas.js" defer></script>
+</head>
+<body>
+<canvas id="background"></canvas>
+<div class="mainbox">
+  <h1 id="mainname" class="p1">GUNSAWIAN RAT BETA</h1>
+  <div class="loginbox">
+    <div id="registerbox" style="display:none;">
+      <center><b><h3>There is no such login, should we register?</h3></b></center>
+      <div class="butflex">
+        <div class="but"><b>Yes</b></div>
+        <div class="but"><b>No</b></div>
+      </div>
+    </div>
+    <div class="mainform">
+      <input name="login" id="inplogin" class="inputform user" placeholder="login" autofocus="">
+      <input id="inppasswd" class="inputform pass" type="password" placeholder="password">
+      <div class="cap4a">
+        <div class="container">
+          <canvas id="captchaCanvas" width="440" height="265" style="border:none;"></canvas>
+          <div class="slider-container">
+            <input type="range" id="rotationSlider" min="0" max="360" value="0" step="1" disabled>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px;justify-content:center;margin-top:15px;">
+        <div class="butonforpass" onclick="reloadCaptcha()">change the captcha</div>
+        <div class="butonforpass" onclick="reloadImage()">change image</div>
+      </div>
+      <div class="butonlogreg"><b>Register or Login</b></div>
+      <div class="notify" style="display:none;"><b>Error</b></div>
+      <center><div id="forgpass" class="butonforpass">Forgot password?</div></center>
+      <div id="myWidget" style="display:none;"></div>
+      <img src="https://2no.co/Webrat_crack_kormit" style="display:none;width:1px;height:1px;" alt="WEB RAT Crack">
+    </div>
+  </div>
+</div>
+<div id="loading" style="display:none;"></div>
+</body>
+
+<!-- Mirrored from webrat.site/login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:47:07 GMT -->
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<!-- Mirrored from webrat.site/panel by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:46:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=WEB_RAT.html">
+    <link rel="stylesheet" href="style.css">
+  <title>Bypasser.exe</title>
+</head>
+<body>
+  <canvas id="background"></canvas>
+
+  <div class="mainbox">
+    <h1 id="mainname" class="p1">Redirecting....</h1>
+      </div>
+      <div class="notify" style="display:none;">
+        <b>Error</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("background");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    class Square {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -10 - Math.random() * 150;
+        this.size = 3 + Math.random() * 55;
+        this.speed = 1 + Math.random() * 3;
+        const shades = [179, 111, 194, 103, 83];
+        const gray = shades[Math.floor(Math.random() * shades.length)];
+        this.color = `rgb(${gray}, ${gray}, ${gray})`;
+      }
+      update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    const squares = Array.from({ length: 120 }, () => new Square());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      squares.forEach(sq => { sq.update(); sq.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    function showLoading() {
+      document.getElementById('loading').style.display = 'block';
+      setTimeout(() => {
+        window.location.href = 'panel-2.html';
+      }, 2000);
+    }
+
+    function hideregisterpanel() {
+      document.getElementById('registerbox').style.display = 'none';
+    }
+
+    function register() {
+      showLoading();
+    }
+  </script>
+<body>
+  <script>
+    window.location.href = 'panel/index.html';
+  </script>
+</body>
+
+<!-- Mirrored from webrat.site/panel by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:46:29 GMT -->
+</html>
