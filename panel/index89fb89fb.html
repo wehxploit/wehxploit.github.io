@@ -1,0 +1,276 @@
+
+<div class="mainheader">
+  <div class="headselectorbutton headselectorbuttonactive" onclick=""><b>Статистика</b></div>
+</div>
+
+<script>
+  setTimeout(()=>{
+    chartcreate2();chartcreate();drawdatachart();
+  },300);
+  function drawdatachart() {
+    $('.value').each(function () {
+      var text = $(this).text();
+      $(this).parent().css('width', text);
+    });
+  }
+</script>
+<script src='../cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.html'></script>
+<link rel="stylesheet" href="../code.jquery.com/ui/1.12.1/themes/base/jquery-ui.html">
+<link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.html">
+<center>
+  <div class="spacevizor">
+    <b>Статистика использования места</b>
+    <div class="graphic2">
+      <div class="row2">
+        <div class="chart2">
+          <span class="block2" title="Файлы пользователя 3%">
+            <span style="display:none" class="value">3%</span>
+          </span>
+          <span class="block2" title="Логи 7%">
+            <span style="display:none" class="value">7%</span>
+          </span>
+          <span class="block2" title="Свободно 90%">
+            <span style="display:none" class="value">90%</span>
+          </span>
+        </div>
+      </div>
+      <br>
+      <div style="display: flex;justify-content: space-between;">
+        <div align=left style="margin-left:5%">
+          <div
+            style="width: 15px;height: 15px;background:var(--color1);display: inline-block;margin: 0px 5px -2px 0px;">
+          </div>Файлы пользователя (3%)
+          <div
+            style="width: 15px;height: 15px;background:var(--color1);filter:brightness(50%);display: inline-block;margin: 0px 5px -2px 0px;">
+          </div>Логи (7%)
+          <div style="width: 15px;height: 15px;background:gray;display: inline-block;margin: 0px 5px -2px 0px;"></div>
+          Свободное место (90%)
+        </div>
+        <div style="margin-right:5%;">
+          0.1 Gb / 10 Gb
+        </div>
+      </div>
+      <style>
+        .graphic2 {
+          /* padding-left: 30px; */
+
+        }
+
+        .row2 {}
+
+        @keyframes expand {
+          from {
+            width: 0%;
+          }
+
+          to {
+            width: 100%;
+          }
+        }
+
+        @media screen and (min-width: 768px) {
+          @keyframes expand {
+            from {
+              width: 0%;
+            }
+
+            to {
+              width: calc(100% - 75px);
+            }
+          }
+        }
+
+        .chart2 {
+          overflow: hidden;
+          width: 0%;
+          animation: expand 1.5s ease forwards;
+        }
+
+        .row2+.row2 .chart2 {
+          animation-delay: .2s;
+        }
+
+        .row2+.row2+.row2 .chart2 {
+          animation-delay: .4s;
+        }
+
+        .block2 {
+          margin-top: 25px;
+          display: block;
+          height: 10px;
+          color: #fff;
+          font-size: 15px;
+          float: left;
+          background-color: var(--color1);
+          position: relative;
+          overflow: hidden;
+          opacity: 1;
+          transition: opacity, .3s ease;
+          cursor: pointer;
+        }
+
+        .block2:nth-of-type(2),
+        .legend li:nth-of-type(2):before {
+          background-color: var(--color1);
+          filter: brightness(50%);
+        }
+
+        .block2:nth-of-type(3),
+        .legend li:nth-of-type(3):before {
+          background-color: #838383;
+        }
+
+        .block2:nth-of-type(4),
+        .legend li:nth-of-type(4):before {
+          background-color: #838383;
+        }
+
+        .block2:nth-of-type(5),
+        .legend li:nth-of-type(5):before {
+          background-color: #DF5A49;
+        }
+
+        .block2:nth-of-type(6),
+        .legend li:nth-of-type(6):before {
+          background-color: #962D3E;
+        }
+
+        .block2:hover {
+          opacity: .65;
+        }
+
+        .value {
+          display: block;
+          line-height: 1em;
+          position: absolute;
+          /* top: 50%; */
+          left: 50%;
+          transform: translate(-50%);
+        }
+
+        .x-axis {
+          text-align: center;
+          /* padding: .5em 0 2em; */
+        }
+
+        .y-axis {
+          height: 20px;
+          transform: translate(-32px, 170px) rotate(270deg);
+          position: absolute;
+          left: 0;
+        }
+
+        .legend {
+          margin: 0 auto;
+          padding: 0;
+          font-size: .9em;
+        }
+
+        .legend li {
+          display: inline-block;
+          padding: .25em 1em;
+          line-height: 1em;
+        }
+
+        .legend li:before {
+          content: "";
+          margin-right: .5em;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background-color: #334D5C;
+        }
+
+        @media screen and (min-width: 768px) {
+          h6 {
+            padding: 0;
+            width: 75px;
+            float: left;
+            line-height: 100px;
+          }
+
+          .block {
+            font-size: 1em;
+          }
+
+          .legend {
+            width: 50%;
+          }
+        }
+      </style>
+    </div>
+  </div>
+</center>
+
+<div>
+  <div class="statdownblock">
+    <div>
+      <center><b>Statistics of new client</b></center>
+
+      <div style="display:flex;">
+        <canvas id="myChart" style="width:100%;max-width:500px; color:azure;"></canvas>
+        <div>
+          <div class="number">
+            <button class="number-minus" type="button"
+              onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+            <input type="number" min="0" value="1">
+            <button class="number-plus" type="button"
+              onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+          </div>
+          <select id="filter12" class="selector" style="margin-right: 10px; width: 100px; margin-top: 10px;">
+            <option>year</option>
+            <option>month</option>
+            <option>day</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <script>
+      var xValuess = ["online", "offline"];
+      var yValues = [55, 49];
+      var barColors = [
+        $(":root").get(0).style.getPropertyValue("--color1"),
+        "gray",
+        "#2b5797",
+        "#e8c3b9",
+        "#e8c3b9",
+        "#1e7145"
+      ];
+      function chartcreate2() {
+        new Chart("myChart2", {
+          type: "doughnut",
+          data: {
+            labels: xValuess,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+            }
+          }
+        });
+      }
+    </script>
+    <br>
+    <div>
+      <center><b>Parameter statistics</b></center>
+      <div style="display:flex;">
+        <canvas id="myChart2" style="width:100%;max-width:500px"></canvas>
+        <div>
+          <select id="filter12" class="selector" style="margin-right: 10px; width: 100px; margin-top: 10px;">
+            <option>status</option>
+            <option>country</option>
+            <option>Camera</option>
+            <option>Microfone</option>
+            <option>Build</option>
+            <option>Owner</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

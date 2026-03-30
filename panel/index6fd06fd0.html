@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<!-- Mirrored from webrat.site/panel/index6fd0.html?target=community by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:47:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <title>Community Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✅ Подключаем стили сайта (твоя тема) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ Подключаем jQuery и Supabase -->
+  <script src="../../code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../../cdn.jsdelivr.net/npm/%40supabase/supabase-js%402/dist/umd/supabase.min.js"></script>
+  <!-- Supabase JS CDN -->
+	<script src="../../unpkg.com/%40supabase/supabase-js%402.45.3/dist/umd/supabase.js"></script>
+
+	<script>
+	  // === Настройка клиента Supabase ===
+	  const SUPABASE_URL = "../../ypfoeackdeyzkmrkytwz.supabase.co/index.html";
+	  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwZm9lYWNrZGV5emttcmt5dHd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI3ODc5OTQsImV4cCI6MjA1ODM2Mzk5NH0.WkCxdRT8sy6n9VH1owcDgnbCJzjgzm5P5OG1h86eRYg";
+
+	  // Создание глобального клиента
+	  window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+	  console.log("🟢 Supabase client initialized:", window.supabase);
+	</script>
+
+	<!-- Теперь подгружаем твой community.js -->
+	<script src="pages/community.js"></script>
+</head>
+<body>
+
+  <!-- 🔹 Шапка с вкладками -->
+  <div class="mainheader">
+    <div id="communityheader" style="display: flex; gap: 10px;">
+      <!-- Вкладки будут добавлены JS -->
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <div class="headselectorbutton"
+         onclick="$('#comprofilepop, .backblur').show(); openminiprofile('my');"
+         style="border-bottom: var(--color1) 2px dotted; margin-right: 15px;">
+      <b id="profhead">profile</b>
+    </div>
+  </div>
+
+  <!-- 🔹 Контейнер чата -->
+  <div id="comchat">
+    <div class="chatbox" id="everychat"></div>
+
+    <div class="chatinput-container" style="">
+      <div id="chatinput-container" style="flex: 1; position: relative;">
+        <textarea class="textbox1" id="chatinput" placeholder="Введите сообщение..."
+          style="resize: none; min-height: 34px; height: 34px; display: block;"></textarea>
+      </div>
+      <div id="sendmsgbutton" class="button1"
+        style="margin-top: 11px; margin-right: 10px;">Отправить</div>
+    </div>
+  </div>
+
+</body>
+
+<!-- Mirrored from webrat.site/panel/index6fd0.html?target=community by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Jan 2026 16:47:40 GMT -->
+</html>

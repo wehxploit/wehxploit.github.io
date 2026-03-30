@@ -1,0 +1,441 @@
+
+<div class="headheader">
+    <div style="display:flex; ">
+        <form>
+            <div class="radio-group">
+                <input type="radio" id="option-one" name="selector" onclick="fastfilter('online')">
+                <label for="option-one">
+                    online                </label>
+                <input type="radio" id="option-two" name="selector" checked onclick="fastfilter('all')">
+                <label for="option-two">
+                    all                </label>
+                <input type="radio" id="option-three" name="selector" onclick="fastfilter('offline')">
+                <label for="option-three">
+                    offline                </label>
+            </div>
+        </form>
+        <img type="image/svg+xml" src="image/filter.svg" width="27" height="27" title="Filter" class="buttonsheader"
+            onclick="showfilterwindow()"></img>
+        <img type="image/svg+xml" src="image/grid-2-plus.svg" width="27" height="27" title="Table settings" class="buttonsheader"
+            onclick="showtablesetwindow()"></img>
+        <img type="image/svg+xml" src="image/network-wired.svg" width="27" height="27" title="Proxy manager" class="buttonsheader"
+            onclick="showp2pwindow()"></img>
+        </img>
+        <img type="image/svg+xml" src="image/users-rays.svg" width="27" height="27" title="Proxy manager" class="topsecret buttonsheader"
+            onclick="showmassdo()"></img>
+        </img>
+        <div style="display:none; cursor: pointer; padding: 5px 10px; margin-top: 2px; margin-left: 2px; text-align: center; color: azure; border: 2px var(--color1) solid; margin-right: 18px;"
+            id="headerfilterreset" onclick="$('#headerfilterreset').hide(); getVictor();  setTimeout(()=>{updatetable();},500)">
+            reset filter</div>
+    </div>
+    <div id="betanotify"
+        style=" cursor: pointer; font-size: 18px; padding: 5px 10px; margin-top: 2px; text-align: center; border: 2px var(--color1) solid;"
+        onclick=""><b>GUNSAWIAN RAT BETA</b></div>
+    <div class="topsecret" style="margin-top: 10px; color: red;">DEV MODE</div>
+    <div style=" ">
+        <div
+            style="cursor: help; display:flex; padding: 5px 10px; margin-top: 2px; text-align: center; border: 2px #494949 solid; margin-right: 18px; font-size: 16px;">
+            <div title="victims online" id="headeronline">0 </div>
+            <pre> ✦ </pre>
+            <div title="all victims" id="headerall">0</div>
+            <pre> ✦ </pre>
+            <div title="victims offline" id="headeroffline">0</div>
+        </div>
+    </div>
+    <!-- <div>
+        <div class="pagessel">
+
+                <div class="pagelist">
+                <div class="pagenumber">
+                <svg class="svgbutton3" style="height: 29px;" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 512 512">
+                    <path
+                        d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+                </svg>
+                </div>
+                    <div class="pagenumber">
+                        1
+                    </div>
+                    <div class="pagenumber">
+                        2
+                    </div>
+                    <div class="pagenumber">
+                        3
+                    </div>
+                    <div class="pagenumber">
+                    <svg class="svgbutton3" style="height: 29px;" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 512 512">
+                    <path
+                        d="M267.3 244.7c6.2 6.2 6.2 16.4 0 22.6l-160 160c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6L233.4 256 84.7 107.3c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0l160 160z" />
+                </svg>
+                </div>
+                </div>
+        </div>
+        </center>
+    </div> -->
+</div>
+
+<div class="backblur" id="backblur"
+    onclick="closestatswindow();closefilterwindow();closetablesetwindow(); closetablep2pwindow(); $('.mainpopup').hide();">
+</div>
+
+<div id="filterwindow">
+    <div class="pophead">
+        <div class="popname">
+            <b>Filter</b>
+        </div>
+        <svg class="closebutton" onclick="closefilterwindow()" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+            fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z" />
+        </svg>
+    </div>
+    <p style="font-size:20px; margin-bottom:20px;"><b></b></p>
+    <div style="display:flex; justify-content: space-around;">
+        <select id="filter11" class="selector" style="margin-right: 10px;">
+            <option type="s" value="uid">user id</option>
+            <option type="s" value="user">user name</option>
+            <option type="s" value="country">location</option>
+            <option type="s" value="version">build ver</option>
+            <option type="s" value="pcname" name="pcname">pc-name</option>
+            <option type="s" value="actwin" name="actwin">active win</option>
+            <option type="s" value="ip" name="ip">ip</option>
+            <option type="d" value="firstseen" name="firstseen">debut</option>
+            <option type="d" value="active" name="active">last active</option>
+            <option type="s" value="comment" name="comment">comment</option>
+            <option type="s" value="uos" name="uos">os</option>
+            <option type="s" value="ucpu" name="ucpu">cpu</option>
+            <option type="s" value="uram" name="uram">ram</option>
+            <option type="s" value="ugpu" name="ugpu">gpu</option>
+            <option type="s" value="build" name="build">build</option>
+        </select>
+
+
+        <select id="filter12" class="selector" style="margin-right: 10px;">
+            <option id="include_sb" value="include" name="include">Include</option>
+            <option id="exclude_sb" value="exclude" name="exclude">Exclude</option>
+            <!-- <option id="equals_sb" value="equals" name="equals">Equals</option> -->
+            <!-- <option value="not_equals" name="not_equals">Not equals</option>-->
+            <!-- <option id="greater_than_sb" value="greater_than" name="greater_than">After</option>
+            <option id="less_than_sb" value="less_than" name="less_than">Before</option>  -->
+        </select>
+
+
+        <input id="filter13" type="text" name="filter" placeholder=options            style="margin-top: 0px; width: 200px;"></input>
+        <!-- <img onclick="addfilter2()" type="image/svg+xml" src="image/square-plus.svg" width="27" height="27"
+            class="addbutton"></img> -->
+        <!-- <input type="radio" id="option-one" name="selector"><label for="option-one">online</label><input type="radio" id="option-two" name="selector"><label for="option-two">all</label><input type="radio" id="option-three" name="selector"><label for="option-three">offline</label> -->
+
+    </div>
+
+
+    <div class="addsecondfilter" id="addsecondfilter">
+        <center>
+
+            <select class="selector" id="filtrofilter" style="margin: 10px;">
+                <option value="or">
+                    or                </option>
+                <option value="and">
+                    and                </option>
+            </select>
+
+        </center>
+        <div style="margin-left:20%;" class="secondfilter" id="secondfilter">
+            <select id="filter211" class="selector" style="margin-right: 10px;">
+                <option value="user">Имя пользователя</option>
+                <option value="pcname" name="pcname">Имя компьютера</option>
+            </select>
+
+
+            <select id="filter212" class="selector" style="margin-right: 10px;">
+                <option value="include" name="include">Включить</option>
+                <option value="exclude" name="exclude">Исключить</option>
+                <option value="equals" name="equals">Равно</option>
+                <option value="not_equals" name="not_equals">Не равно</option>
+                <option value="greater_than" name="greater_than">Больше чем</option>
+                <option value="less_than" name="less_than">Меньше чем</option>
+            </select>
+
+            <input id="filter213" type="text" name="filter" placeholder=options                style="margin-top: 0px; margin-left: 10px; margin-right: 10px; margin-bottom: 5px; width: 30%;"></input>
+            <img type="image/svg+xml" src="image/square-minus.svg" width="27" height="27" class="addbutton"
+                onclick="delitefilter2()"></img>
+            <!-- <input type="radio" id="option-one" name="selector"><label for="option-one">online</label><input type="radio" id="option-two" name="selector"><label for="option-two">all</label><input type="radio" id="option-three" name="selector"><label for="option-three">offline</label> -->
+
+        </div>
+    </div>
+    </select>
+    <form style="">
+        <div class="radio-group" style="margin-top:30px;">
+            <input type="radio" id="option-f" name="selector">
+            <label for="option-f">
+                online            </label>
+            <input type="radio" id="option-f2" name="selector">
+            <label for="option-f2">
+                all            </label>
+            <input type="radio" id="option-3" name="selector">
+            <label for="option-3">
+                offline            </label>
+        </div>
+    </form>
+    <div class="button1" style="margin-left:38.9%;margin-top:30px;" id="apply-filters"
+        onclick="closefilterwindow(); slowfilter();">
+        search    </div>
+
+</div>
+
+<div id="tablesetwindow">
+
+    <div class="pophead">
+        <div class="popname">
+            <b>Settings</b>
+        </div>
+        <svg class="closebutton" onclick="closetablesetwindow()" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z" />
+        </svg>
+    </div>
+
+    <!-- <div style="margin-top: 10px; width: 100%; margin-left: 30px; font-size: 20px; font: bold;" class=""><h3><b>Colomns</b></h3></div> -->
+    <div class="itpt" style="height: 100%">
+
+        <div >
+            <div style="margin-top: 10px; width: 100%; margin-left: 30px; font-size: 20px; font: bold;" class="">
+                <h3><b>Colomns</b></h3>
+            </div>
+            <div style="display: flex;">
+                <div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="status" id="colcheckstatus" onchange="checkchangestolbik(this);"
+                            type="checkbox"> status </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="user" id="colcheckusername" onchange="checkchangestolbik(this);"
+                            type="checkbox"> username </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="adm" id="colcheckadmin" onchange="checkchangestolbik(this);"
+                            type="checkbox"> admin rights </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="comment" id="colchecklastcomment"
+                            onchange="checkchangestolbik(this);" type="checkbox"> comment </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="country" id="colchecklocation"
+                            onchange="checkchangestolbik(this);" type="checkbox"> location </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="pcname" id="colcheckpcname" onchange="checkchangestolbik(this);"
+                            type="checkbox"> pc-name </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="actwin" id="colcheckactive" onchange="checkchangestolbik(this);"
+                            type="checkbox"> window </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="active" id="colchecklastactive"
+                            onchange="checkchangestolbik(this);" type="checkbox"> last active </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;" class="topsecret">
+                        <input class="checkbox " target="bname" id="colcheckbuildname"
+                            onchange="checkchangestolbik(this);" type="checkbox"> build name </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;" class="">
+                        <input class="checkbox " target="version" id="colcheckbuildversion"
+                            onchange="checkchangestolbik(this);" type="checkbox"> build version </input>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="uid" id="colcheckid" onchange="checkchangestolbik(this);"
+                            type="checkbox"> id </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="ip" id="colcheckip" onchange="checkchangestolbik(this);"
+                            type="checkbox"> ip </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="uos" id="colcheckos" onchange="checkchangestolbik(this);"
+                            type="checkbox"> os </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="ucpu" id="colcheckcpu" onchange="checkchangestolbik(this);"
+                            type="checkbox"> cpu </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="uram" id="colcheckram" onchange="checkchangestolbik(this);"
+                            type="checkbox"> ram </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="ugpu" id="colcheckgpu" onchange="checkchangestolbik(this);"
+                            type="checkbox"> gpu </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="firstseen" id="colcheckdebut"
+                            onchange="checkchangestolbik(this);" type="checkbox"> debut </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="build" id="colcheckbuild" onchange="checkchangestolbik(this);"
+                            type="checkbox"> build </input>
+                    </div>
+                    <div style="margin-left: 0px; margin-right: 0px; margin: 5px;">
+                        <input class="checkbox" target="hosting" id="colcheckhosting" onchange="checkchangestolbik(this);"
+                            type="checkbox"> hosting </input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="margin-top: 10px; width: 100%; margin-bottom: 10px; margin-left: 30px; font-size: 20px; font: bold;"
+                class="">
+                <h3><b>Settings</b></h3>
+            </div>
+            <!-- <div style="margin-left: 0px; margin-right: 0px;">
+                <input class="checkbox" type="checkbox">
+                Icon status </input>
+            </div> -->
+            <!-- <div style="margin-left: 0px; margin-top: 18px; margin-right: 0px;">
+                <input class="checkbox" type="checkbox">
+                Disable animation</input>
+            </div> -->
+            <!-- <div style="margin-left: 0px; margin-top: 18px; margin-right: 0px;">
+                <input class="checkbox" type="checkbox">
+                Show all victims</input>
+            </div> -->
+            <div style="margin-left: 0px; margin-right: 5px;">
+                <input id="checkleftcolor" onchange="leftcolorchanger()" class="checkbox" type="checkbox">
+                Disable color</input>
+            </div>
+            <div style="margin-left: 0px; margin-top: 18px; margin-right: 5px;">
+                <input id="checkuabbr" onchange="uabbrchanger()" class="checkbox" type="checkbox">
+                Username abbreviation</input>
+            </div>
+            <div style="margin-left: 0px; margin-top: 18px; margin-right: 5px;">
+                <input id="checkmoreinfo" onchange="moreinfochanger()" class="checkbox" type="checkbox">
+                Disable more info</input>
+            </div>
+            <div style="margin-left: 0px; margin-top: 18px; margin-right: 5px;">
+                <input id="checkdupehide" onchange="dupehidechanger()" class="checkbox" type="checkbox">
+                Hide duplicates</input>
+            </div>
+            <div style="width: 200px; margin-left: 0px; margin-top: 18px; margin-right: 20px; align-items: center; padding-left: 20px;">
+                <center><div style="" class="">autoupdate users</div></center>
+                <select id="updateintervalsel" onchange='createCookie("updatetablespeed", $("#updateintervalsel option:selected").attr("number"), 365); location.reload();' class="selector" style="margin-right: 20px;">
+                    <option number="0" >None</option>
+                    <option number="1" >Slow</option>
+                    <option number="2" >Fast</option>
+                </select>
+            </div>
+            <div class="button1" style="width:180px; margin-left: 20px; margin-top: 20px;" onclick="resetstolbiki();">
+                reset
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="tablep2pwindow">
+    <div class="pophead">
+        <div class="popname">
+            <b>Proxy list</b>
+        </div>
+        <svg class="closebutton" onclick="closetablep2pwindow()" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z" />
+        </svg>
+    </div>
+    <div id="proxylistpanel">
+        <div>
+            <div style="display:none;" id="headerrproxy" class="headerproxy">
+                <center><b>Reverse proxy (SOCKS5)</b></center>
+            </div>
+            <div style="display:none;" id="headerrproxyline" class="line1"></div>
+            <div id="revproxylist">
+
+            </div>
+            <div style="display:none; margin-top:10px;" id="headerrproxyline2" class="line1"></div>
+        </div>
+        <div>
+            <div style="display:none;" id="headerpproxy" class="headerproxy">
+                <center><b>Port forvarding</b></center>
+            </div>
+            <div style="display:none;" id="headerpproxyline" class="line1"></div>
+            <div id="portroxylist">
+
+            </div>
+            <div style="display:none; margin-top:10px;" id="headerpproxyline2" class="line1"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="massdowindow" style="display:none;">
+    <div class="pophead">
+        <div class="popname">
+            <b>Mass actions with users</b>
+        </div>
+        <svg class="closebutton" onclick="closemassdo()" xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z" />
+        </svg>
+    </div>
+    <div>
+        <div class="massdoslector"><div class="massdosel">online</div><div class="massdosel">all</div><div class="massdosel">offline</div></div>
+        <div id='massdoing'>
+            <div class="massdo"><div class="massdo1">Execute stealler</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Save log</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Execute file</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Execute url</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Execute command</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Execute script</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Uninstall build</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Kill build</div><div class="button1">add</div></div>
+            <div class="massdo"><div class="massdo1">Elevate</div><div class="button1">add</div></div>
+        </div>
+        <div id="massdoselected">
+            
+        </div>
+        <div id="">
+
+        </div>
+    </div>
+</div> 
+
+</body>
+<!-- partial -->
+
+
+<div class="userctrl" style="display:none;">
+    <iframe id="userctrl" style="width:100%;height:100%;">
+    </iframe>
+</div>
+
+
+<!-- Row title -->
+<main class="row title">
+    <ul id="stolbiki">
+        <!-- <li class="plusintitle" onclick="showtablesetwindow()" style="padding-left: 0px; margin-left: 7px; "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" height="15px"><path d="M176 208V352c0 8.8 7.2 16 16 16s16-7.2 16-16V208H352c8.8 0 16-7.2 16-16s-7.2-16-16-16H208V32c0-8.8-7.2-16-16-16s-16 7.2-16 16V176H32c-8.8 0-16 7.2-16 16s7.2 16 16 16H176zM16 464c0 8.8 7.2 16 16 16H352c8.8 0 16-7.2 16-16s-7.2-16-16-16H32c-8.8 0-16 7.2-16 16z"/></svg></li> -->
+
+        <div class="editmenu"></div>
+        <!-- <li class="trss" >id <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img></li>
+<li class="trss" >status <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img> </li>
+<li class="trss" >user <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img> </li>
+<li class="trss">PC-name <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img> </li>
+<li class="trss">active window <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img> </li>
+<li class="trss" >last active <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img></li>
+<li class="trss">ip <img type="image/svg+xml" src="image/arrow-down-wide-short.svg" width="15" height="15" class="buttonsort"></img></li> -->
+    </ul>
+</main>
+<!-- <section class="wrapper">
+</section> -->
+<section class="uwrapper"
+    style="margin-top: 80px;overflow: auto;height: calc(100% - 82px);position: fixed;width:calc(100% - 48px)" ;>
+</section>
+<script src="pages/panel.js"></script>
+
+<!-- <div class="f11down" style="display:none;">
+    WEB RAT
+</div>  -->

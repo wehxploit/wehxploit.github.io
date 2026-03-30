@@ -1,0 +1,64 @@
+<script src="pages/scripts.js"></script>
+
+<div class=" buildheader">
+    <div class="headselectorbutton headselectorbuttonactive" onclick="headsel('.pagemanager',this);"><b>scripts</b></div>
+    <div style="flex-grow: 1;"></div>
+    <div><div class="headselectorbutton topsecret" onclick="$('.popup, .backblur').show();" style="border-bottom: var(--color1) 2px dotted; margin-right: 15px;"><b>
+            manager
+        </b></div></div>
+</div>
+
+        <script>
+            function headsel(el, t) {
+            $(".pageeditor").eq(0).hide();
+            $(".pagemanager").eq(0).hide();
+            $(el).eq(0).show();
+            $(".headselectorbutton").eq(0).removeClass("headselectorbuttonactive");
+            $(".headselectorbutton").eq(1).removeClass("headselectorbuttonactive");
+            $(t).addClass("headselectorbuttonactive");
+            }
+        </script>
+
+<div id="overlay"></div>
+<div id="editorPopup">
+<div class="pophead" style="background: #171717;">
+        <div class="popname" id="scriptnamediv" onclick="renamescriptshow();">
+            <b id="scriptname"></b>
+        </div>
+    <div style="display: inline-flex;">
+        <div class="buttoncfg" onclick="savescriptbutton()" style="">save</div>
+        <svg class="closebutton" onclick="$('#editorPopup').hide(); $('.backblur').hide();" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+            <path d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z"></path>
+        </svg>
+    </div>
+
+    </div>
+    <div id="container" style="height:100%;"></div>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="../cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.min.html">
+    <script> var require = {paths: {'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs' } }; </script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.html"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.nls.html"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.html"></script>
+    
+
+</div>
+<div class="backblur" style="display:none;"></div>
+<div class="pagemanager">
+    <div class="buildcreatebut" id="buildcreatebut" onclick="showaddscript()">
+        <p>Create new script</p>
+    </div>
+    <div id="scripts" style="margin-top: 5px;">
+        <div class="overtablebox2" style="margin-bottom: 5px;">
+            <div class="buildchiled">
+                <div style="text-align: center; margin: 15px; font-size: 18px;">
+                    <b>Script</b>
+                </div>
+                <div class="line1"></div>
+                <div class="linebuildchiled">
+                    <div class="button1" style="width: 50%;" onclick="confirm(delitebuild(`uO38Lel0POB2dkwo`));">Delete</div>
+                    <div class="button1" style="width: 50%;">Edit</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

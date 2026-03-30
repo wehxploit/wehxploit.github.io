@@ -1,0 +1,128 @@
+<html lang="ru">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>WEB_RAT</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/jquery-ui.js"></script>
+  <script src="lib/jquery.custom-select.min.js"></script>
+
+  <link href="lib/jquery.custom-select.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="lib/reset.min.css">
+  <link rel="stylesheet" href="lib/normalize.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="pages/base64.min.js"></script>
+  <script src="enum.js"></script>
+  <script src="page.js"></script>
+  <script src="../babka.html"></script>
+
+  <style>
+    a.navlink {
+      display: inline-flex;
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PANEL -->
+<a class="navlink" href="index25022502.html?target=panel">
+  <svg class="lefeitems" style="margin-left:2px;"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Panel</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- BUILDER -->
+<a class="navlink" href="index20aa20aa.html?target=builder">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Builder</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- FRIENDS -->
+<a class="navlink" href="index4c3b4c3b.html?target=friends">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Friends</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- SCRIPTS -->
+<a class="navlink" href="index26402640.html?target=scripts">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Scripts</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- NOTIFY -->
+<a class="navlink" href="indexa6cda6cd.html?target=notify">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Notify</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- PERFORMANCE -->
+<a class="navlink" href="index89fb89fb.html?target=perfomance">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Performance</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- SUBS -->
+<a class="navlink" href="index29102910.html?target=subs">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Subscriptions</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+<!-- COMMUNITY (notification JS preserved) -->
+<a class="navlink" href="index6fd06fd0.html?target=community">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor"
+       onclick='$("#notification-circle").hide();'>
+    <title>Community</title>
+    <path d="..."></path>
+    <circle id="notification-circle"
+            style="display:none; filter:invert(100%);"
+            cx="400" cy="80" r="105"></circle>
+  </svg>
+</a>
+
+<!-- SETTINGS -->
+<a class="navlink" href="index7aad7aad.html?target=settings">
+  <svg class="lefeitems"
+       xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 512 512" fill="currentColor">
+    <title>Settings</title>
+    <path d="..."></path>
+  </svg>
+</a>
+
+</body>
+</html>

